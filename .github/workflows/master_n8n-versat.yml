@@ -22,15 +22,15 @@ jobs:
     - name: Log in to registry
       uses: docker/login-action@v2
       with:
-        registry: https://mcr.microsoft.com/
-        username: ${{ secrets.AzureAppService_ContainerUsername_5f290ba4254849718788956526921542 }}
-        password: ${{ secrets.AzureAppService_ContainerPassword_3c9d8d16a4a549d6a450797e2397ea50 }}
+        registry: https://n8nio/n8n:latest/
+        username: ${{ secrets.AzureAppService_ContainerUsername_fd17f29b77c341ddbf6e46847165c452 }}
+        password: ${{ secrets.AzureAppService_ContainerPassword_8b2e238640814cbb90ab3fc40964a784 }}
 
     - name: Build and push container image to registry
       uses: docker/build-push-action@v3
       with:
         push: true
-        tags: mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_5f290ba4254849718788956526921542 }}/appsvc/staticsite:${{ github.sha }}
+        tags: n8nio/n8n:latest/${{ secrets.AzureAppService_ContainerUsername_fd17f29b77c341ddbf6e46847165c452 }}/n8nio/n8n:${{ github.sha }}
         file: ./Dockerfile
 
   deploy:
@@ -47,5 +47,5 @@ jobs:
       with:
         app-name: 'n8n-versat'
         slot-name: 'production'
-        publish-profile: ${{ secrets.AzureAppService_PublishProfile_819e1393ad974a86bd16f9314e54fae3 }}
-        images: 'mcr.microsoft.com/${{ secrets.AzureAppService_ContainerUsername_5f290ba4254849718788956526921542 }}/appsvc/staticsite:${{ github.sha }}'
+        publish-profile: ${{ secrets.AzureAppService_PublishProfile_03d74209421e477e9fdab92cab9dc28a }}
+        images: 'n8nio/n8n:latest/${{ secrets.AzureAppService_ContainerUsername_fd17f29b77c341ddbf6e46847165c452 }}/n8nio/n8n:${{ github.sha }}'
