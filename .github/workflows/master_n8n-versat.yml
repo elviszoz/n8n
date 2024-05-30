@@ -31,7 +31,7 @@ jobs:
       with:
         push: true
         tags: index.docker.io/${{ secrets.AzureAppService_ContainerUsername_ce07461458874c089cd4fee49402f087 }}/n8nio/n8n:${{ github.sha }}
-        file: ./Dockerfile
+        file: ./docker/images/n8n-custom/Dockerfile
 
   deploy:
     runs-on: ubuntu-latest
